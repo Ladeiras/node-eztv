@@ -21,7 +21,7 @@ self.getShows = function(options, callback) {
 			$elements.each(function(i, e) {
 				
 				var show = {};
-				show.url = $(e).find("td").eq(1).find("a").attr("href");
+				show.url = $(e).find("td").eq(0).find("a").attr("href");
 				if (!show.url) {
 					return;
 				}
@@ -33,12 +33,12 @@ self.getShows = function(options, callback) {
 				show.id = parseInt(regex[1]);
 				show.slug = regex[2];
 				
-				var title = $(e).find("td").eq(1).text();
+				var title = $(e).find("td").eq(0).text();
 				if (S(title).endsWith(", The")) {
 					title = "The " + S(title).chompRight(", The").s;
 				}
 				show.title = title;
-				show.status = $(e).find("td").eq(2).find("font").attr("class");
+				show.status = $(e).find("td").eq(1).find("font").attr("class");
 
 				if (options && options.query) {
 					if (show.title.toLowerCase().search(options.query.toLowerCase()) >= 0) {
